@@ -1,0 +1,35 @@
+version: "3.8" # Specify the Docker Compose version for better compatibility
+
+networks:
+  multizone: # Define the shared network for services
+    driver: bridge
+
+services:
+  blog:
+    container_name: blog
+    build:
+      context: .
+      dockerfile: ./blog/Dockerfile
+    ports:
+      - "4000:4000"
+    tty: true
+    stdin_open: true
+    networks:
+      - multizone
+
+  home:
+    container_name: home
+    build:
+      context: .
+      dockerfile: ./home/Dockerfile
+      args:
+        BLOG_URL: http://blog:4000 # Use consistent key-value syntax for args
+        # Alternative URLs can be uncommented as needed:
+        # BLOG_URL: https://with-zones-blog.vercel.app
+        # BLOG_URL: http://blog:4000
+    ports:
+      - "4001:4001"
+    tty: true
+    stdin_open: true
+    networks:
+      - multizone
