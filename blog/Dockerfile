@@ -54,7 +54,7 @@ RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
 
 # Copy the standalone build output
 COPY --from=builder /opt/app/apps/${APP_NAME}/.next/standalone ./
-COPY --from=builder /opt/app/apps/${APP_NAME}/.next/static ./apps/${APP_NAME}/.next/static
+COPY --from=builder /opt/app/apps/${APP_NAME}/.next/static ./blog-static/.next/static
 # COPY --from=builder /opt/app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
 
 # Ensure the container runs as a non-root user

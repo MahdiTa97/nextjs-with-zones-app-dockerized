@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "standalone",
   // basePath: "/blog",
-  // assetPrefix: "/blog-static",
+  assetPrefix: "/blog-static",
 };
 
 module.exports = nextConfig;
